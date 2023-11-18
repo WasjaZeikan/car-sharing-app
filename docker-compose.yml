@@ -2,7 +2,7 @@ services:
   app:
     depends_on:
     - mysql
-    image: book-store
+    image: car-sharing
     restart: no
     ports:
       - $SPRING_LOCAL_PORT:$SPRING_DOCKER_PORT

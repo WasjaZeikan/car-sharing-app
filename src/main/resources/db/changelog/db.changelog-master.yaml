@@ -1,0 +1,6 @@
+databaseChangeLog:
+  - changeSet:
+      id: empty-changeset
+      author: Vasyl Zeikan
+      changes:
+        - empty: { }
