@@ -13,7 +13,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
 import lombok.Data;
 import org.hibernate.annotations.SQLDelete;
@@ -43,14 +42,14 @@ public class User implements UserDetails {
     @CollectionTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role")
     @Enumerated(value = EnumType.STRING)
-    private Set<Role> roles = new HashSet<>();
+    private Set<Role> roles;
     @Column(name = "is_deleted")
     private boolean isDeleted = false;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles.stream()
-                .map(role -> new SimpleGrantedAuthority(role.name()))
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.name()))
                 .toList();
     }
 
