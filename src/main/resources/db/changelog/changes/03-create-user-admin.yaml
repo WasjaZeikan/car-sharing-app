@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - logicalFilePath: db/changelog/changes/03-create-user-admin.yaml
+  - changeSet:
+      id: create-user-admin
+      author: Vasyl Zeikan
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: email
+                  value: admin@admin.com
+
+              - column:
+                  name: password
+                  value: $2a$12$N.Vzk6OAV4RDilLb/aS3qemnaC2wW5UXTCtBx5vUISF6x9tl4mMTS
+
+              - column:
+                  name: first_name
+                  value: ADMIN
+
+              - column:
+                  name: last_name
+                  value: ADMIN
+
+        - insert:
+            tableName: users_roles
+            columns:
+              - column:
+                  name: role
+                  value: MANAGER
+
+              - column:
+                  name: user_id
+                  value: 1
+
+        - insert:
+            tableName: users_roles
+            columns:
+              - column:
+                  name: role
+                  value: CUSTOMER
+
+              - column:
+                  name: user_id
+                  value: 1

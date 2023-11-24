@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - logicalFilePath: db/changelog/changes/02-create-users-roles-table.yaml
+  - changeSet:
+      id: create-users-roles-table
+      author: Vasyl Zeikan
+      changes:
+        - createTable:
+            tableName: users_roles
+            columns:
+              - column:
+                  name: role
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: user
+                    referencedColumnNames: id
+                    referencedTableName: users
