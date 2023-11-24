@@ -1,6 +1,10 @@
 databaseChangeLog:
+  - logicalFilePath: db/changelog/db.changelog-master.yaml
   - changeSet:
       id: empty-changeset
       author: Vasyl Zeikan
       changes:
         - empty: { }
+
+  - includeAll:
+      path: db/changelog/changes/
