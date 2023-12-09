@@ -56,6 +56,9 @@ public class RentalServiceImpl implements RentalService {
     public void setActualReturnDate(Long rentalId, LocalDate returnDate) {
         Rental rental = rentalRepository.findById(rentalId).orElseThrow(
                 () -> new EntityNotFoundException("Can't find a rental with id: " + rentalId));
+        if (rental.getActualReturnDate() != null) {
+            throw new RentalException("Rental with id: " + rentalId + " is not active");
+        }
         rental.setActualReturnDate(returnDate);
         Car car = carRepository.findById(rental.getCarId()).orElseThrow(
                 () -> new EntityNotFoundException(
